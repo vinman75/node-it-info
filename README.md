@@ -44,7 +44,7 @@ We appreciate your interest and will get back to you as soon as possible!
 ## Screenshots (Examples)
 
 <p align="center">
-  <img src="assets/screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/screenshot.png" alt="Node-It Partcle system" width="400">
 </p>
 
 
