@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Custom Nodes - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.0</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Creating Custom Nodes</h2>
+<p>Node-It is designed to be highly extensible. Developers can create new node types to add custom functionality, integrate with external libraries, or define specialized data processing units. This guide outlines the process.</p>
+
+        <h3>1. File and Directory Structure</h3>
+        <p>Organize your custom node files within the <code>node_graph_editor/nodes/</code> directory. Create subdirectories to categorize your nodes; these subdirectory names will automatically become the categories in the node creation menus (e.g., Tab Menu, Right-Click Menu).</p>
+        <p><strong>Example:</strong> To create a "SuperMath" node in a "CustomMath" category:</p>
+        <ul>
+            <li>Create directory: <code>node_graph_editor/nodes/CustomMath/</code></li>
+            <li>Create Python file: <code>node_graph_editor/nodes/CustomMath/super_math_node.py</code></li>
+        </ul>
+
+        <h3>2. Node Class Definition</h3>
+        <p>Your custom node class must inherit from <code>node_graph_editor.core.base_node.Node</code> or one of its more specialized base classes if appropriate (though direct inheritance from <code>Node</code> is common for flexibility):</p>
+        <ul>
+            <li><strong><code>Node</code>:</strong> The most fundamental base class. Provides core attributes (ID, name, position, inputs, output, graph reference) and evaluation lifecycle methods.</li>
+            <li><strong><code>DataNode</code>:</strong> For nodes that primarily hold a single, user-editable value (e.g., <code>FloatNode</code>, <code>StrNode</code>). Simplifies value setting and display.</li>
+            <li><strong><code>BinaryOperatorNode</code>:</strong> For nodes that perform an operation on two inputs ("A" and "B") (e.g., <code>AddNode</code>, <code>MultiplyNode</code>).</li>
+            <li><strong><code>ConversionNode</code>:</strong> For nodes that take a single input and convert it to a different type/representation (e.g., <code>FloatToIntNode</code>).</li>
+            <li><strong><code>UnaryListMapNode</code>:</strong> For nodes that apply a single function element-wise to items in a list (e.g., <code>SinListNode</code>).</li>
+        </ul>
+        <p>Import the necessary base class: <code>from node_graph_editor.core.base_node import Node</code> (or other base).</p>
+
+        <h3>3. Implementing the `__init__` Method</h3>
+        <p>The constructor initializes your node's state.</p>
+        <pre><code>
+class MyCustomNode(Node):
+    def __init__(self, name: str): # 'name' is passed by the registry during creation
+        super().__init__(name) # CRITICAL: Call the parent constructor
+
+        # 1. Define Input Ports:
+        # A dictionary mapping port names (strings) to their initial connection state (usually None).
+        # These names appear on the NodeItem in the graph.
+        self.inputs = {
+            "Primary Value": None,
+            "Multiplier": None,
+            "Enable Feature": None
+        }
+
+        # 2. Initialize Output:
+        # Set a default value for self.output based on what your node will produce.
+        self.output: Any = 0.0 # Example: a float output
+
+        # 3. (Optional) Display & UI Behavior Flags:
+        # self.display_result = True  # If True, shows self.output (or get_display_value()) on the NodeItem.
+        # self.hide_value_editor = False # If False (and not a DataNode), a generic 'Value:' field might appear.
+                                       # Set to True if you have custom UI or no direct value to edit.
+        # self.always_reevaluate = False # If True, bypasses input-based caching. Useful for nodes that
+                                        # should run every frame (e.g., TimeNode, some drawing nodes).
+        # self.show_state_label = False # If True, displays self.state_label content on the node.
+        # self.state_label: Optional[str] = None # Text for the state label.
+
+        # 4. (Optional) Dynamic Inputs:
+        # if self.dynamic_inputs:
+        #     self.dynamic_input_prefix = "Item " # Prefix for dynamically added ports
+        #     self.min_input_count = 2          # Minimum number of "Item X" ports to show
+        #     self._ensure_default_inputs()     # Method to create initial dynamic ports
+        </code></pre>
+
+        <h3>4. Implementing the `_evaluate` Method</h3>
+        <p>This is the core logic of your node. It's called when the graph needs this node's output.</p>
+        <pre><code>
+    def _evaluate(self) -> Any: # Return type should match your node's output
+        # 1. Get Input Values:
+        primary_val = self.get_input_value("Primary Value")
+        multiplier_val = self.get_input_value("Multiplier")
+        feature_enabled = self.get_input_value("Enable Feature")
+
+        # 2. Perform Input Validation and Defaulting:
+        # It's crucial to handle cases where inputs might be None (disconnected) or an unexpected type.
+        num_primary = 0.0
+        if primary_val is not None:
+            try: num_primary = float(primary_val)
+            except (ValueError, TypeError):
+                logger.warning(f"{self.name}: Invalid 'Primary Value' {primary_val}. Using 0.0.")
+        
+        num_multiplier = 1.0
+        if multiplier_val is not None:
+            try: num_multiplier = float(multiplier_val)
+            except (ValueError, TypeError):
+                logger.warning(f"{self.name}: Invalid 'Multiplier' {multiplier_val}. Using 1.0.")
+
+        is_enabled = False
+        if feature_enabled is not None:
+            try: is_enabled = bool(feature_enabled)
+            except: pass # Default to False on error
+
+        # 3. Perform Node's Operation:
+        result = num_primary * num_multiplier
+        if is_enabled:
+            result += 10 # Example conditional logic
+
+        # 4. Store and Return Result:
+        self.output = result
+        return self.output
+        </code></pre>
+        <p><strong>Important:</strong> <code>_evaluate</code> should generally be side-effect free regarding the graph structure. It calculates and returns a value. UI updates and dependent node notifications are handled by the framework after evaluation.</p>
+
+        <h3>5. Implementing Metadata Methods</h3>
+        <p>These methods provide information to the UI and connection system:</p>
+        <pre><code>
+    def get_type_label(self) -> str:
+        return "My Custom Node" # User-friendly name in Node Editor header
+
+    def get_color_category(self) -> str:
+        # Return a key from Settings.COLORS or a custom category string.
+        # The system will try to find this key in Settings.COLORS.
+        # If not found, it might fall back to a default.
+        return "custom_math" # e.g., you'd add "custom_math": "#HEXCOLOR" to Settings.COLORS
+
+    def get_accepted_types_for_input(self, input_name: str) -> List[str]:
+        # Define what data types each input port accepts.
+        # These are strings (e.g., "float", "int", "str", "list", "vector2", "vector3", "dict", "any").
+        if input_name == "Primary Value": return ["float", "int"]
+        if input_name == "Multiplier": return ["float", "int"]
+        if input_name == "Enable Feature": return ["bool"]
+        return [] # Should not happen for defined inputs
+
+    def get_output_type(self) -> str:
+        # Define the data type of the output port.
+        return "float" # Or "str", "list", "any", "none" (if no output dot)
+        </code></pre>
+
+        <h3>6. (Optional) Advanced UI Customization for Node Editor</h3>
+        <p>You can further customize how your node appears and behaves in the Node Editor panel:</p>
+        <ul>
+            <li><strong><code>get_visual_style(self) -> str</code>:</strong> Return <code>"compact"</code> or <code>"dot"</code> for alternative NodeItem appearances.</li>
+            <li><strong><code>is_visualizable(self) -> bool</code> / <code>get_draw_commands(self) -> List[Dict]</code>:</strong> For nodes that generate 2D graphics for the Visualizer panel.</li>
+            <li><strong><code>get_dropdown_configurations(self) -> List[Dict]</code>:</strong> Define specifications for dropdown menus. Each dictionary in the list should define <code>'attribute_name'</code>, <code>'label'</code>, <code>'options_method_name'</code>, <code>'current_value_method_name'</code>, and <code>'set_value_method_name'</code>. See <code>TextLayoutNode</code> for an example.</li>
+            <li><strong><code>get_text_input_configurations(self) -> List[Dict]</code>:</strong> For specific multi-line text inputs. See <code>SourceTextNode</code>.</li>
+            <li><strong><code>get_editable_attributes(self) -> List[Tuple[str, str]]</code>:</strong> For generic attribute editing using standard widgets (spinboxes, checkboxes, line edits for vectors). Return a list of <code>(internal_attribute_name_str, type_str)</code>. See <code>TransformNode</code>.
+                <ul>
+                    <li>Requires implementing:
+                        <ul>
+                            <li><code>get_internal_attribute_value(self, attribute_name: str) -> Any</code></li>
+                            <li><code>set_internal_attribute_value(self, attribute_name: str, value: Any, graph_for_update: Optional['NodeGraph'] = None) -> bool</code> (return True if value changed)</li>
+                            <li><code>is_input_connected(self, attribute_name: str) -> bool</code> (to disable UI if attribute is driven by an input port)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong><code>needs_custom_editor(self) -> bool</code>:</strong> Return `True` if the Node Editor should call `node_ui_builder.build_gradient_editor` or `build_color_editor` (if you also implement `get_gradient_data`/`get_internal_color`).</li>
+        </ul>
+
+        <h3>7. (Optional) Saving and Loading Custom Data</h3>
+        <p>If your node has internal state beyond its inputs/outputs that needs to be saved and loaded with the graph:</p>
+        <pre><code>
+    def save_custom_data(self, element: ET.Element): # ET is xml.etree.ElementTree
+        super().save_custom_data(element) # Good practice to call parent
+        element.set("my_custom_setting", str(self.my_internal_setting))
+        # For lists or dicts, consider serializing to JSON string:
+        # import json
+        # element.set("my_list_setting", json.dumps(self.my_list))
+
+    def load_custom_data(self, element: ET.Element):
+        super().load_custom_data(element)
+        self.my_internal_setting = element.get("my_custom_setting", "default_value_if_missing")
+        # list_str = element.get("my_list_setting")
+        # if list_str: self.my_list = json.loads(list_str)
+        </code></pre>
+
+        <h3>8. Registration</h3>
+        <p>Finally, register your node using the <code>@registry.register(...)</code> decorator. See the "Node Registration Details" section for full details on its parameters.</p>
+        <p>Once these steps are completed and your node file is in the correct directory structure, Node-It will automatically discover and make your custom node available when the application starts.</p>
+        <p><em>(Developer Topic)</em></p>
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.0 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

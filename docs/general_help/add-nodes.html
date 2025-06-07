@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Nodes to the Graph - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.0</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Add Nodes to the Graph</h2>
+<p>There are two primary ways for users to add new nodes to the graph:</p>
+        <ol>
+            <li><strong>Context Menu (Right-Click):</strong> Right-clicking on an empty area of the graph canvas brings up a menu. Nodes are organized by category (e.g., 'Operators', 'Data', 'Conversion'). Navigate the submenus and click on a node type (e.g., 'Add', 'Float', 'FloatToInt') to create an instance of it at the location you clicked.</li>
+            <li><strong>Tab Menu Search (Tab Key):</strong> Pressing the <strong>Tab</strong> key while the graph view is focused opens a searchable menu near your mouse cursor. Start typing to filter the list of available nodes, then press Enter or double-click to create the selected node type. See the 'Tab Menu Search' section for more details.</li>
+        </ol>
+        <p>You can also use the <strong>AI Graph Builder</strong> (see Interface Panels section) to generate multiple nodes and connections from a text description.</p>
+        <p>Newly created nodes typically receive default names (e.g., "Float1", "Add2"), which can be changed in the Node Editor panel.</p>
+        <p><em>(Functionality provided by ContextMenuManager, TabMenu, AIGraphBuilderManager interacting with NodeGraphView)</em></p>
+        <!-- Placeholder: <img src="assets/help/node_creation.png" alt="Creating nodes via context and tab menus"> -->
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.0 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

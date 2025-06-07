@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting Nodes - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.0</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Connecting Nodes</h2>
+<p>Nodes process data by passing it through connections (wires) between output and input ports (dots).</p>
+        <ul>
+            <li><strong>Create Connection:</strong> Click and drag with the <strong>Left Mouse Button</strong> from an <strong>output dot</strong> (typically on the right side of a node) towards an input dot.</li>
+            <li><strong>Compatibility Feedback:</strong> While dragging, the temporary wire and potential target dots indicate compatibility:
+                <ul>
+                    <li><span style='color: #ffff00;'>Yellow (dotted line):</span> Standard dragging line when not hovering over a dot.</li>
+                    <li><span style='color: #00ff00;'>Green (solid line):</span> Hovering over a compatible input dot. A colored circle indicator (<span style="display:inline-block; width:14px; height:14px; border:2px solid white; border-radius:50%; vertical-align:middle;"></span>) also appears. Releasing will create the connection.</li>
+                    <li><span style='color: #ff0000;'>Red (solid line):</span> Hovering over an incompatible input dot (wrong data type or attempting to connect to another output dot). Releasing will not connect.</li>
+                </ul>
+            </li>
+            <li><strong>Completing Connection:</strong> Release the mouse button while hovering over a compatible <strong>input dot</strong> (typically on the left side of another node) to create the connection.</li>
+            <li><strong>Cancelling Connection Drag:</strong> Release the mouse button over an empty area or press <strong>Esc</strong> to cancel the drag.</li>
+            <li><strong>Connection Style:</strong> Connections are drawn as Bezier curves by default. Toggle between Bezier and Linear via <strong>View > Connection Style > Linear/Bezier</strong> or <code>Ctrl+B</code>.</li>
+            <li><strong>Data Flow:</strong> Data generally flows from left to right, from output ports to input ports. Cycles are prevented.</li>
+            <li><strong>Single Input Connection:</strong> Input ports only accept one connection. Making a new connection to an already connected input automatically disconnects the old one first.</li>
+            <li><strong>Muted Connection Style:</strong> Connections attached to a muted node (input or output side) are drawn with a <strong>dashed line style</strong>.</li>
+            <li><strong>Port Tooltips:</strong> Hovering over an input or output dot shows a tooltip with the port name and its accepted/output data type(s) (e.g., "Input: float", "Output: str", "Input: list").</li>
+        </ul>
+        <p><em>(Handled by ConnectionManager)</em></p>
+        <!-- Placeholder: <img src="assets/help/connections.gif" alt="Connecting Nodes Animation"> -->
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.0 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
