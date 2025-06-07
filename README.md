@@ -43,18 +43,13 @@ In your email, please include:
 
 We appreciate your interest and will get back to you as soon as possible!
 
----
 
 ## Screenshots (Examples)
 
-<!-- TODO: Add some compelling screenshots of Node-It in action here. 
-     Create an 'assets' folder, put your screenshots in it, 
-     and link them like: ![Node-It Interface](assets/screenshot1.png) -->
 <p align="center">
-  <em>(Screenshots coming soon!)</em>
+  <img src="screenshot.png alt="Node-It Interface Example 1" width="400">
 </p>
 
----
 
 We're excited to build a community around Node-It and see what you create!
 
