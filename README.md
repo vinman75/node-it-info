@@ -47,7 +47,7 @@ We appreciate your interest and will get back to you as soon as possible!
 ## Screenshots (Examples)
 
 <p align="center">
-  <img src="screenshot.png alt="Node-It Interface Example 1" width="400">
+  <img src="screenshot.png alt="Node-It Partcle system" width="400">
 </p>
 
 
