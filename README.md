@@ -1,7 +1,7 @@
 # Node-It: Visual Scripting Made Easy! 💡
 
 <p align="center">
-  <img src="node-it_splash.png" alt="Node-It Logo" width="300">
+  <img src="Assets/node-it_splash.png" alt="Node-It Logo" width="300">
 </p>
 
 Node-It is a versatile visual scripting application built with Python and PySide6, offering a graphical environment to design, create, and execute various logic flows and data processing pipelines. It's perfect for tasks ranging from generative art and data manipulation to AI interaction and animation control.
