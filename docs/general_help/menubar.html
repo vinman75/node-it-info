@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Bar - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.0</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Menu Bar</h2>
+<p>The menu bar at the top of the application window provides access to most application functions, organized into standard menus:</p>
+        <ul>
+            <li><strong>File:</strong>
+                <ul>
+                    <li><code>New Scene</code> (Ctrl+N): Clears the current graph and starts fresh.</li>
+                    <li><code>Open</code> (Ctrl+O): Loads a graph from an XML file.</li>
+                    <li><code>Save</code> (Ctrl+S): Saves the current graph to its existing file.</li>
+                    <li><code>Save As...</code> (Ctrl+Shift+S): Saves the current graph to a new file.</li>
+                    <li><code>Quit</code> (Ctrl+Q): Exits the application.</li>
+                </ul>
+            </li>
+            <li><strong>Edit:</strong>
+                <ul>
+                    <li><code>Undo</code> (Ctrl+Z): Reverts the last action.</li>
+                    <li><code>Redo</code> (Ctrl+Y): Re-applies the last undone action.</li>
+                    <li><code>Duplicate</code> (Ctrl+D): Duplicates the currently selected node(s).</li>
+                </ul>
+            </li>
+            <li><strong>View:</strong>
+                <ul>
+                    <li><code>Set Canvas Background...</code>: Opens a color dialog to change the background color of the Visualizer canvas.</li>
+                    <li><code>Show/Hide Grid</code> (X key): Toggles the visibility of the background grid in the Node Graph View and Visualizer Canvas.</li>
+                    <li><code>Snap to Grid</code> (Ctrl+X): Toggles whether nodes snap to the grid when moved.</li>
+                    <li><code>Connection Style</code> (Sub-menu):
+                        <ul>
+                            <li><code>Linear</code>: Sets connection lines to be straight.</li>
+                            <li><code>Bezier</code>: Sets connection lines to be curved (default). (Shortcut: Ctrl+B toggles this setting)</li>
+                        </ul>
+                    </li>
+                    <li><code>Toggle Rounded Corners</code> (Ctrl+R): Toggles between rounded and square corners for nodes.</li>
+                    <li><code>Reset Layout</code>: Restores the default arrangement of dockable panels and the Visualizer's canvas background color.</li>
+                </ul>
+            </li>
+            <li><strong>Windows:</strong>
+                <ul>
+                    <li><code>Show/Hide Node Editor</code>: Toggles the visibility of the Node Editor panel.</li>
+                    <li><code>Show/Hide Output Window</code>: Toggles the visibility of the Output Window panel.</li>
+                    <li><code>Show/Hide Visualizer</code>: Toggles the visibility of the Visualizer panel.</li>
+                    <li><code>Show/Hide Keyframe Sequencer</code>: Toggles the visibility of the Keyframe Sequencer panel.</li>
+                    <li><code>Dock Node Editor</code> (Sub-menu):
+                        <ul>
+                            <li><code>Dock Left</code>: Docks the Node Editor to the left side.</li>
+                            <li><code>Dock Right</code>: Docks the Node Editor to the right side.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Execution:</strong>
+                <ul>
+                    <li><code>Run Graph Execution</code>: Evaluates the entire graph and then executes any final 'action' nodes (e.g., file exports). Also available on the Toolbar.</li>
+                </ul>
+            </li>
+            <li><strong>Help:</strong>
+                <ul>
+                    <li><code>Documentation</code> (F1): Opens this help documentation.</li>
+                    <li><code>About</code>: Displays information about the application.</li>
+                </ul>
+            </li>
+        </ul>
+        <p><em>(Managed by MenuManager)</em></p>
+        <!-- Placeholder: <img src="assets/help/menubar_overview.png" alt="Application menu bar"> -->
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.0 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
