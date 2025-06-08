@@ -7,39 +7,46 @@
  */
 function getRelativePathPrefix() {
     const path = window.location.pathname;
-    // console.log("Current Pathname:", path);
+    const isGitHubPagesProjectSite = window.location.hostname.endsWith('github.io') && path.split('/').filter(Boolean).length > 0 && path.split('/').filter(Boolean)[0] !== 'docs'; // Basic check
 
-    // Try to find '/docs/' to reliably determine depth relative to the docs root
-    const docsSegment = '/docs/';
-    const docsIndex = path.indexOf(docsSegment);
     let depth = 0;
+    const docsSegment = '/docs/'; // This is for local testing structure, not for live GH pages URL if serving from /docs
+    const docsIndex = path.indexOf(docsSegment);
 
-    if (docsIndex !== -1) {
-        // Path relative to the *end* of '/docs/'
+    if (docsIndex !== -1 && !isGitHubPagesProjectSite) { // Only use /docs/ logic if it's found AND we're NOT on a GH Pages site where /docs/ is hidden
         const pathAfterDocs = path.substring(docsIndex + docsSegment.length);
-        // Count non-empty segments (directories) *before* any potential filename
         const segments = pathAfterDocs.split('/').filter(Boolean);
-        // If the last segment contains '.', assume it's a file, otherwise it's a directory index
         depth = segments.length - (segments.length > 0 && segments[segments.length - 1].includes('.') ? 1 : 0);
-         // console.log(`Path relative to /docs/: '${pathAfterDocs}', Segments: ${segments}, Depth: ${depth}`);
     } else {
-        // Fallback for local file:/// or server root deployments
-        // Count directory separators in the path after the domain/root
-        const pathSegments = path.split('/').filter(Boolean);
-         // If the last segment looks like a file, don't count it as depth level
-        depth = pathSegments.length - (pathSegments.length > 0 && pathSegments[pathSegments.length - 1].includes('.') ? 1 : 0);
-         // Handle file:/// paths where the first segment might be the drive letter
-         if (window.location.protocol === 'file:' && pathSegments.length > 0 && /^[a-zA-Z]:$/.test(pathSegments[0])) {
-             depth = Math.max(0, depth -1); // Adjust if drive letter was counted
-         }
-        // console.log(`Fallback path segments: ${pathSegments}, Calculated Depth: ${depth}`);
+        // This block will now run for:
+        // 1. GitHub Pages sites where /docs/ is the source but not in the URL.
+        // 2. Local file:/// or other server root deployments (where /docs/ might also not be in the base path).
+        let pathRelevantForDepth = path;
+
+        if (isGitHubPagesProjectSite) {
+            // Remove the repository name part from the path for depth calculation
+            // e.g., /node-it-info/general_help/page.html -> /general_help/page.html
+            const repoName = path.split('/')[1]; // Assumes format /repo-name/...
+            if (repoName) {
+                pathRelevantForDepth = path.substring(path.indexOf(repoName) + repoName.length);
+            }
+        } else if (window.location.protocol === 'file:') {
+            // For file:///, remove drive letter if present for depth calculation
+            const pathSegmentsTemp = path.split('/').filter(Boolean);
+            if (pathSegmentsTemp.length > 0 && /^[a-zA-Z]:$/.test(pathSegmentsTemp[0])) {
+                pathRelevantForDepth = pathSegmentsTemp.slice(1).join('/');
+                if (!pathRelevantForDepth.startsWith('/')) pathRelevantForDepth = '/' + pathRelevantForDepth;
+            }
+        }
+        // console.log("Path relevant for depth:", pathRelevantForDepth);
+
+        const segments = pathRelevantForDepth.split('/').filter(Boolean);
+        depth = segments.length - (segments.length > 0 && segments[segments.length - 1].includes('.') ? 1 : 0);
     }
 
-    // Ensure depth is not negative
     depth = Math.max(0, depth);
-
     const prefix = '../'.repeat(depth);
-    // console.log("Calculated Relative Prefix:", prefix || "'' (root)");
+    // console.log("Current Pathname:", path, "Calculated Depth:", depth, "Relative Prefix:", prefix || "'' (root)");
     return prefix;
 }
 
