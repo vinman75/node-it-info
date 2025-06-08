@@ -45,7 +45,7 @@ I appreciate your interest and will get back to you as soon as possible!
 
 ## 📚 Full Documentation
 
-For detailed guides, tutorials, and API references, please visit our full documentation website:
+For detailed information and API references, please visit our full documentation website:
 
 ➡️ **[Node-It Documentation](https://vinman75.github.io/node-it-info/)** ⬅️
 
