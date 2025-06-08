@@ -38,7 +38,18 @@ In your email, please include:
 *   Your GitHub username (if you have one).
 *   A brief description of your interest in Node-It (e.g., what you'd like to use it for, your experience with visual scripting, or how you'd like to contribute).
 
-We appreciate your interest and will get back to you as soon as possible!
+I appreciate your interest and will get back to you as soon as possible!
+
+---
+
+
+## 📚 Full Documentation
+
+For detailed information and API references, please visit the full documentation website:
+
+➡️ **[Node-It Documentation](https://vinman75.github.io/node-it-info/)** ⬅️
+
+---
 
 
 ## Screenshots (Examples)
@@ -47,6 +58,7 @@ We appreciate your interest and will get back to you as soon as possible!
   <img src="Assets/screenshot.png" alt="Node-It Partcle system" width="400">
 </p>
 
+---
 
 We're excited to build a community around Node-It and see what you create!
 
