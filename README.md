@@ -60,6 +60,7 @@ For detailed information and API references, please visit the full documentation
   <img src="Assets/gears_screenshot.png" alt="Node-It Partcle system" width="400">
   <img src="Assets/lsystem_screenshot.png" alt="Node-It Partcle system" width="400">
   <img src="Assets/mandelbrot_screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/hexagons_screenshot.png" alt="Node-It Partcle system" width="400">  
 </p>
 
 ---
