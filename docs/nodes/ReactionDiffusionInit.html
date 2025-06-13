@@ -10,7 +10,7 @@
 <body>
     <header>
         <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
-        <h1>Node-It Help Documentation v0.6.0</h1>
+        <h1>Node-It Help Documentation v0.6.2</h1>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
             <div id="searchResultsContainer"></div>
@@ -29,17 +29,21 @@
         <strong>Category:</strong> Simualtion
         <span class="node-color-swatch" style="background-color: #3C4955;" title="Color: #3C4955"></span>
     </p>
-    <p><strong>Description:</strong> Creates two FloatGrids representing initial concentrations for chemicals A and B, output as a dictionary {'grid_a': ..., 'grid_b': ...}. Parameters: Width, Height, Default A, Default B, Perturbation Type, Perturbation X/Y, Perturbation Size, and Perturbation B Value. These can be set in the Node Editor or via inputs.</p>
+    <p><strong>Description:</strong> Generates two FloatGrids for chemicals A and B. Parameters: Width, Height, Default A/B concentrations. Creates 'Num Perturbation Points' (defined internally or by input) for chemicals A and B, each with 'Perturbation Size' and 'Perturbation A/B Value'. Positions are random (using 'Seed') if 'Explicit Pert. Positions In' is not connected, otherwise uses explicit positions. Perturbation shape (Square/Circle) is selectable. Optional initial noise can be added to both grids. Outputs a dictionary {'grid_a': ..., 'grid_b': ...}.</p>
     <p><b>Inputs:</b></p>
     <ul>
         <li><strong>Width In:</strong> <code>int</code></li>
         <li><strong>Height In:</strong> <code>int</code></li>
         <li><strong>Default A In:</strong> <code>float</code></li>
         <li><strong>Default B In:</strong> <code>float</code></li>
-        <li><strong>Perturbation X In:</strong> <code>int</code></li>
-        <li><strong>Perturbation Y In:</strong> <code>int</code></li>
+        <li><strong>Num Perturbation Points In:</strong> <code>int</code></li>
+        <li><strong>Explicit Pert. Positions In:</strong> <code>list</code></li>
         <li><strong>Perturbation Size In:</strong> <code>int</code></li>
+        <li><strong>Perturbation A Value In:</strong> <code>float</code></li>
         <li><strong>Perturbation B Value In:</strong> <code>float</code></li>
+        <li><strong>Noise Level A In:</strong> <code>float</code></li>
+        <li><strong>Noise Level B In:</strong> <code>float</code></li>
+        <li><strong>Seed In:</strong> <code>int</code></li>
     </ul>
     <p><b>Outputs:</b></p>
     <ul>
@@ -51,7 +55,7 @@
         </main>
     </div>
     <footer>
-        Node-It v0.6.0 Documentation | Project License: MIT | Copyright 2025, Vinman75
+        Node-It v0.6.2 Documentation | Project License: MIT | Copyright 2025, Vinman75
     </footer>
 
     <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->

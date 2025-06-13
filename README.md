@@ -25,11 +25,11 @@ Node-It is a versatile visual scripting application built with Python and PySide
 
 ## Current Status & Access
 
-Node-It is currently in **Beta (v0.6.0)** and developed by **Vinman75**.
+Node-It is currently in **Beta (v0.6.2)** and developed by **Vinman75**.
 
 **Access to the Node-It software and its source code is currently by invitation only.**
 
-We are looking for enthusiastic testers, users with interesting project ideas, and potential contributors.
+I am looking for enthusiastic testers, users with interesting project ideas, and potential contributors.
 
 ✉️ **How to Request Access or Inquire About Contributions:**
 Please send an email to: **node.it.software@gmail.com**
@@ -55,11 +55,15 @@ For detailed information and API references, please visit the full documentation
 ## Screenshots (Examples)
 
 <p align="center">
-  <img src="Assets/screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/particles_screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/rds_screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/gears_screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/lsystem_screenshot.png" alt="Node-It Partcle system" width="400">
+  <img src="Assets/mandelbrot_screenshot.png" alt="Node-It Partcle system" width="400">
 </p>
 
 ---
 
-We're excited to build a community around Node-It and see what you create!
+I am excited to build a community around Node-It and see what you create!
 
 #NodeIt #VisualScripting #Python #PySide6 #NodeBased #CreativeCoding #SoftwareDevelopment #BetaSoftware #InviteOnly

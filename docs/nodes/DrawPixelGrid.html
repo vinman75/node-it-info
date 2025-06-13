@@ -10,7 +10,7 @@
 <body>
     <header>
         <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
-        <h1>Node-It Help Documentation v0.6.0</h1>
+        <h1>Node-It Help Documentation v0.6.2</h1>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
             <div id="searchResultsContainer"></div>
@@ -29,10 +29,10 @@
         <strong>Category:</strong> Drawing
         <span class="node-color-swatch" style="background-color: #DAA520;" title="Color: #DAA520"></span>
     </p>
-    <p><strong>Description:</strong> Takes 'Color Grid' data. If 'Image' type, a 'Channel View' dropdown allows displaying R,G,B,A, or Luminance as grayscale. If 'FloatGrid' or 'ValueGrid' (integer grid), displays as grayscale. If Python list (legacy), 'Pixel Size' applies. 'Position' sets top-left.</p>
+    <p><strong>Description:</strong> Takes 'Color Grid' data. If 'Image' type (NumPy RGBA array), a 'Channel View' dropdown allows displaying R,G,B,A, or Luminance as grayscale. If 'FloatGrid' or 'ValueGrid' (integer grid), displays as grayscale. If Python list (legacy List[List[color_values]]), 'Pixel Size' applies. 'Position' sets top-left. Outputs a single draw command.</p>
     <p><b>Inputs:</b></p>
     <ul>
-        <li><strong>Color Grid:</strong> <code>['Image', 'floatgrid', 'ValueGrid', 'list']</code></li>
+        <li><strong>Color Grid:</strong> <code>['Image', 'floatgrid', 'ValueGrid', 'list', 'any']</code></li>
         <li><strong>Position:</strong> <code>vector2</code></li>
         <li><strong>Pixel Size:</strong> <code>float</code></li>
     </ul>
@@ -46,7 +46,7 @@
         </main>
     </div>
     <footer>
-        Node-It v0.6.0 Documentation | Project License: MIT | Copyright 2025, Vinman75
+        Node-It v0.6.2 Documentation | Project License: MIT | Copyright 2025, Vinman75
     </footer>
 
     <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->

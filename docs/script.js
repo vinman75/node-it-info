@@ -7,48 +7,35 @@
  */
 function getRelativePathPrefix() {
     const path = window.location.pathname;
-    const isGitHubPagesProjectSite = window.location.hostname.endsWith('github.io') && path.split('/').filter(Boolean).length > 0 && path.split('/').filter(Boolean)[0] !== 'docs'; // Basic check
-
+    const isGitHubPagesProjectSite = window.location.hostname.endsWith('github.io') && path.split('/').filter(Boolean).length > 0 && path.split('/').filter(Boolean)[0] !== 'docs';
     let depth = 0;
-    const docsSegment = '/docs/'; // This is for local testing structure, not for live GH pages URL if serving from /docs
+    const docsSegment = '/docs/';
     const docsIndex = path.indexOf(docsSegment);
-
-    if (docsIndex !== -1 && !isGitHubPagesProjectSite) { // Only use /docs/ logic if it's found AND we're NOT on a GH Pages site where /docs/ is hidden
+    if (docsIndex !== -1 && !isGitHubPagesProjectSite) {
         const pathAfterDocs = path.substring(docsIndex + docsSegment.length);
         const segments = pathAfterDocs.split('/').filter(Boolean);
         depth = segments.length - (segments.length > 0 && segments[segments.length - 1].includes('.') ? 1 : 0);
     } else {
-        // This block will now run for:
-        // 1. GitHub Pages sites where /docs/ is the source but not in the URL.
-        // 2. Local file:/// or other server root deployments (where /docs/ might also not be in the base path).
         let pathRelevantForDepth = path;
-
         if (isGitHubPagesProjectSite) {
-            // Remove the repository name part from the path for depth calculation
-            // e.g., /node-it-info/general_help/page.html -> /general_help/page.html
-            const repoName = path.split('/')[1]; // Assumes format /repo-name/...
+            const repoName = path.split('/')[1];
             if (repoName) {
                 pathRelevantForDepth = path.substring(path.indexOf(repoName) + repoName.length);
             }
         } else if (window.location.protocol === 'file:') {
-            // For file:///, remove drive letter if present for depth calculation
             const pathSegmentsTemp = path.split('/').filter(Boolean);
             if (pathSegmentsTemp.length > 0 && /^[a-zA-Z]:$/.test(pathSegmentsTemp[0])) {
                 pathRelevantForDepth = pathSegmentsTemp.slice(1).join('/');
                 if (!pathRelevantForDepth.startsWith('/')) pathRelevantForDepth = '/' + pathRelevantForDepth;
             }
         }
-        // console.log("Path relevant for depth:", pathRelevantForDepth);
-
         const segments = pathRelevantForDepth.split('/').filter(Boolean);
         depth = segments.length - (segments.length > 0 && segments[segments.length - 1].includes('.') ? 1 : 0);
     }
-
     depth = Math.max(0, depth);
     const prefix = '../'.repeat(depth);
-    // console.log("Current Pathname:", path, "Calculated Depth:", depth, "Relative Prefix:", prefix || "'' (root)");
     return prefix;
-}
+} 
 
 
 /**
