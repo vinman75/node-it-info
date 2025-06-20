@@ -25,7 +25,7 @@ Node-It is a versatile visual scripting application built with Python and PySide
 
 ## Current Status & Access
 
-Node-It is currently in **Beta (v0.6.2)** and developed by **Vinman75**.
+Node-It is currently in **Beta (v0.6.3)** and developed by **Vinman75**.
 
 **Access to the Node-It software and its source code is currently by invitation only.**
 
