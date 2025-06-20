@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Bar - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.3</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Status Bar</h2>
+<p>The Status Bar at the bottom of the main window provides quick information:</p>
+        <ul>
+            <li><strong>Total Nodes:</strong> Current count of nodes in the graph.</li>
+            <li><strong>Selected Nodes:</strong> Number of currently selected nodes.</li>
+            <li><strong>Temporary Messages:</strong> Shows brief status updates (e.g., "Executing graph...", "Export successful...", errors).</li>
+        </ul>
+        <p><em>(Managed by StatusBarManager)</em></p>
+        <!-- Placeholder: <img src="assets/help/status_bar.png" alt="Application status bar"> -->
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.3 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

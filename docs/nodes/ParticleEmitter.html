@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParticleEmitter - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.3</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            
+<h2>ParticleEmitter</h2>
+<div class="node-details">
+    <p>
+        <strong>Category:</strong> Dynamics
+        <span class="node-color-swatch" style="background-color: #6e694a;" title="Color: #6e694a"></span>
+    </p>
+    <p><strong>Description:</strong> Emits particles. Emission mode, geo normal usage, spread, and initial global attributes (speed, life, size, mass, color, opacity, rotation) are set via Node Editor, with optional override input ports. Requires Delta Time and connection TO a Physics Solver.</p>
+    <p><b>Inputs:</b></p>
+    <ul>
+        <li><strong>Reset Emitter:</strong> <code>bool</code></li>
+        <li><strong>Position:</strong> <code>vector2</code></li>
+        <li><strong>Source Geometry:</strong> <code>list</code></li>
+        <li><strong>Emission Direction:</strong> <code>vector2</code></li>
+        <li><strong>Rate:</strong> <code>float</code></li>
+        <li><strong>Count:</strong> <code>int</code></li>
+        <li><strong>Spread Angle Override:</strong> <code>float</code></li>
+        <li><strong>Speed Override:</strong> <code>float</code></li>
+        <li><strong>Lifespan Override:</strong> <code>float</code></li>
+        <li><strong>Size Override:</strong> <code>float</code></li>
+        <li><strong>Mass Override:</strong> <code>float</code></li>
+        <li><strong>Color Override:</strong> <code>vector3</code></li>
+        <li><strong>Opacity Override:</strong> <code>float</code></li>
+        <li><strong>Rotation Override:</strong> <code>float</code></li>
+        <li><strong>Ramp Color:</strong> <code>list</code></li>
+        <li><strong>Ramp Size:</strong> <code>list</code></li>
+        <li><strong>Ramp Opacity:</strong> <code>list</code></li>
+        <li><strong>PP Speed:</strong> <code>list</code></li>
+        <li><strong>PP Lifespan:</strong> <code>list</code></li>
+        <li><strong>PP Size:</strong> <code>list</code></li>
+        <li><strong>PP Mass:</strong> <code>list</code></li>
+        <li><strong>PP Color:</strong> <code>list</code></li>
+        <li><strong>PP Opacity:</strong> <code>list</code></li>
+        <li><strong>PP Initial Rotation:</strong> <code>list</code></li>
+    </ul>
+    <p><b>Outputs:</b></p>
+    <ul>
+        <li><strong>Output:</strong> <code>emitter_ref</code></li>
+    </ul>
+    <p><b>Extractable Attributes (from output data):</b></p>
+<ul>
+        <li><code>id</code></li>
+        <li><code>pos</code></li>
+        <li><code>vel</code></li>
+        <li><code>age</code></li>
+        <li><code>life</code></li>
+        <li><code>max_life</code></li>
+        <li><code>mass</code></li>
+        <li><code>inv_mass</code></li>
+        <li><code>size</code></li>
+        <li><code>radius</code></li>
+        <li><code>color</code></li>
+        <li><code>opacity</code></li>
+        <li><code>rotation</code></li>
+    </ul>
+</div>
+
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.3 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

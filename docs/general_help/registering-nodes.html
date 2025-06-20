@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Registration Details - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.3</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Node Registration Details</h2>
+<p>For Node-It to recognize and use your custom node, it must be registered with the application's central node registry. This is achieved using the <strong><code>@registry.register()</code></strong> decorator, placed directly above your node class definition.</p>
+
+        <h4>Decorator Syntax:</h4>
+        <pre><code>
+# In your_project/node_graph_editor/nodes/YourCategory/your_node_file.py
+from node_graph_editor.core.registry import registry
+from node_graph_editor.core.base_node import Node
+from node_graph_editor.config.settings import Settings # Optional, for colors
+
+@registry.register(
+    "MyUniqueNodeTypeID",      # 1. Unique internal identifier for this node type (string)
+    tooltip="A concise tooltip shown when hovering over the node in creation menus.",
+    description="A more detailed explanation of the node's purpose, its inputs, outputs, "
+                "and any notable behavior or usage tips. This appears in documentation "
+                "and the 'H' key info popup.",
+    inputs=[ # List of (PortDisplayName, DataTypeString) tuples
+        ("Input Value A", "float"),
+        ("Mode Selection", "str"),
+        ("Optional Data", "any")
+    ],
+    output="list", # DataTypeString for the output, or "none" if no output port
+    category_color=Settings.COLORS.get("your_custom_category_key", "#A1B2C3"), # Optional
+    connection_hints=[ # Optional: Guidance for users and AI graph builder
+        "INPUT Input Value A: Expects a numeric value for processing.",
+        "INPUT Mode Selection: Accepts strings like 'Mode1' or 'Mode2'.",
+        "OUTPUT: Returns a list of processed items.",
+        "HINT: This node works well with 'AnotherNodeName.SpecificInput'."
+    ],
+    extractable_attributes=['id', 'name', 'result_value'] # Optional: If output is List[Dict]
+)
+class MyRegisteredNode(Node):
+    _node_type_name = "MyUniqueNodeTypeID" # Store the registered type name
+
+    def __init__(self, name: str):
+        super().__init__(name)
+        # ... (inputs dict, output init, etc.) ...
+
+    def get_type_label(self) -> str:
+        # User-friendly name displayed in the Node Editor header
+        return "My Registered Node Display Name"
+    
+    # ... (other methods like _evaluate, get_color_category, etc.) ...
+        </code></pre>
+
+        <h4>Decorator Parameters Explained:</h4>
+        <ul>
+            <li><strong><code>Node Type ID</code> (Required, String):</strong>
+                <ul>
+                    <li>The first positional argument. This is the <strong>unique internal identifier</strong> for your node type.</li>
+                    <li>It's used for saving and loading graphs (nodes are stored by this ID).</li>
+                    <li>Must be unique across all nodes in the application.</li>
+                    <li>Conventionally, use PascalCase (e.g., "MyCustomProcessor", "ImageBlur").</li>
+                </ul>
+            </li>
+            <li><strong><code>tooltip</code> (String):</strong>
+                <ul>
+                    <li>A short, descriptive text that appears when the user hovers over the node type in creation menus (like the Tab Menu or context menu).</li>
+                </ul>
+            </li>
+            <li><strong><code>description</code> (String):</strong>
+                <ul>
+                    <li>A more detailed explanation of what the node does, its purpose, how its inputs affect its output, and any important usage notes.</li>
+                    <li>This information is used for generating documentation and is displayed in the info popup when the user presses and holds the 'H' key while hovering over a node instance in the graph.</li>
+                </ul>
+            </li>
+            <li><strong><code>inputs</code> (List of Tuples):</strong>
+                <ul>
+                    <li>A list defining the input ports of the node. Each item in the list is a tuple: <code>("Port Display Name", "DataTypeString")</code>.</li>
+                    <li><strong>"Port Display Name":</strong> The text label shown next to the input dot on the NodeItem.</li>
+                    <li><strong>"DataTypeString":</strong> A string indicating the expected data type(s) for this port. Examples: <code>"float"</code>, <code>"int"</code>, <code>"str"</code>, <code>"bool"</code>, <code>"list"</code>, <code>"dict"</code>, <code>"vector2"</code>, <code>"vector3"</code>, <code>"Image"</code>, <code>"any"</code>. This string is used to determine the color of the input dot and for visual connection compatibility checks. For ports that accept multiple types, you can provide a list of strings: <code>["float", "int"]</code>.</li>
+                    <li>The order in this list generally influences the order of ports on the NodeItem (though dynamic ports have their own sorting).</li>
+                </ul>
+            </li>
+            <li><strong><code>output</code> (String):</strong>
+                <ul>
+                    <li>A string indicating the data type of the node's primary output port. Uses the same data type strings as the <code>inputs</code>.</li>
+                    <li>If the node does not have an output dot (e.g., an Export node or a Logger), use <code>"none"</code>.</li>
+                </ul>
+            </li>
+            <li><strong><code>category_color</code> (String, Optional):</strong>
+                <ul>
+                    <li>A hexadecimal color string (e.g., <code>"#RRGGBB"</code>) to explicitly set the body color of the NodeItem for this node type.</li>
+                    <li>If not provided, the node will typically use the color associated with its <code>menu_category</code> (derived from directory structure) as defined in <code>Settings.COLORS</code>.</li>
+                </ul>
+            </li>
+            <li><strong><code>connection_hints</code> (List of Strings, Optional):</strong>
+                <ul>
+                    <li>A list of strings providing guidance to users (and potentially the AI graph builder) on how to connect this node or interpret its inputs/outputs.</li>
+                    <li>Prefix hints with "INPUT PortName:", "OUTPUT:", or "HINT:" for clarity.</li>
+                    <li>These appear in the 'H' key info popup.</li>
+                </ul>
+            </li>
+            <li><strong><code>extractable_attributes</code> (List of Strings, Optional):</strong>
+                <ul>
+                    <li>If your node outputs a list of dictionaries (or objects with attributes), list the string keys/attribute names here that a user might want to extract using the <code>ExtractListAttributeNode</code>.</li>
+                    <li>This populates the dropdown in <code>ExtractListAttributeNode</code> when connected to this node's output.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>Class Attribute `_node_type_name` (Important!)</h4>
+        <p>Inside your node class, you **must** also define a class attribute <code>_node_type_name</code> and set it to the *exact same string* as the first argument (Node Type ID) you provided to the <code>@registry.register()</code> decorator.</p>
+        <pre><code>
+class MyRegisteredNode(Node):
+    _node_type_name = "MyUniqueNodeTypeID" # Must match the decorator's ID
+    # ... rest of the class ...
+        </code></pre>
+        <p>This allows the system (especially during loading or introspection before full instantiation) to reliably identify the registered type name of the class.</p>
+
+        <h4>Menu Category Derivation</h4>
+        <p>The category under which your node appears in the Tab Menu and the right-click context menu is automatically determined by the name of the subdirectory (within <code>node_graph_editor/nodes/</code>) where your node's Python file resides. For example, a node in <code>node_graph_editor/nodes/Geometry/circle_node.py</code> will appear under the "Geometry" category.</p>
+
+        <h4>Automatic Discovery</h4>
+        <p>The application includes a mechanism (<code>register_all_nodes()</code> in <code>node_graph_editor/nodes/__init__.py</code>) that automatically scans these directories on startup. It imports modules and registers any classes decorated with <code>@registry.register()</code>. Ensure your node file does not have import errors that would prevent it from being processed.</p>
+        <p><em>(Developer Topic)</em></p>
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.3 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+
+:root {
+    --background-color: #2e2e2e;
+    --text-color: #f0f0f0;
+    --banner-background: #2c3e50;
+    --sidebar-background: #2a2a2a;
+    --link-color: #66b3ff;
+    --link-hover-color: #99ccff;
+    --category-background: #333333;
+    --footer-background: #1a1a1a;
+    --code-background: #2d2d2d;
+    --border-color: #444;
+    --header-padding: 10px;
+    --header-icon-height: 32px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6; /* Increases text spacing for better readability */
+}
+
+header {
+    background: var(--banner-background);
+    color: var(--text-color);
+    padding: var(--header-padding) 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc(var(--header-icon-height) + (2 * var(--header-padding)));
+    box-sizing: border-box;
+}
+
+.header-icon {
+    height: var(--header-icon-height);
+    width: auto;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.6em;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-grow: 1;
+    /* overflow: hidden; */ /* REMOVE this line */
+}
+
+nav {
+    width: 250px;
+    background: var(--sidebar-background);
+    padding: 15px;
+    overflow-y: auto;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
+    min-height: calc(100vh - 60px - 40px);
+}
+
+nav .loading-placeholder {
+    color: #aaa;
+    padding: 15px;
+    text-align: center;
+}
+
+main {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* IMPROVED SPACING */
+ul {
+    margin-bottom: 20px; /* Extra space below lists */
+}
+
+li {
+    margin-bottom: 12px; /* More space between list items */
+}
+
+p {
+    margin-bottom: 18px; /* More space between paragraphs */
+}
+
+h2 {
+    border-bottom: 2px solid var(--link-color);
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px; /* Extra space below headings */
+}
+
+/* Footer adjustments */
+footer {
+    background: var(--footer-background);
+    color: #aaa;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.8em;
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    margin-top: 30px; /* More space between content and footer */
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.category {
+    margin-bottom: 12px;
+}
+
+.category-header {
+    cursor: pointer;
+    background: var(--category-background);
+    padding: 8px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.category-header:hover {
+    background: #444;
+}
+
+.category-title {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.category ul {
+    display: none;
+    list-style-type: none;
+    padding: 5px 0 5px 15px;
+    margin: 0;
+    border-left: 1px solid #444;
+    margin-left: 5px;
+}
+
+.category ul li {
+    margin: 6px 0;
+}
+
+/* Homepage specific styles */
+#welcome h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: var(--link-hover-color);
+}
+
+#welcome ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+#welcome code, .node-details code {
+    background-color: var(--code-background);
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    color: #ddd;
+}
+
+/* Node details styles */
+.node-details p {
+    margin: 10px 0;
+}
+
+.node-details b {
+    color: var(--link-hover-color);
+}
+
+.node-details ul {
+    list-style-type: none;
+    padding-left: 15px;
+    margin-top: 4px;
+}
+
+.node-details ul li {
+    margin: 4px 0;
+}
+
+.node-details ul li::before {
+    content: "- ";
+    color: var(--link-color);
+}
+
+/* Style for swatch on node page */
+.node-color-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #555;
+    margin-right: 5px;
+    vertical-align: middle;
+    border-radius: 3px;
+}
+
+/* --- START OF ADDED CSS FOR SEARCH --- */
+.search-container {
+    margin-left: auto; /* Pushes search to the right of the header */
+    display: flex; /* Aligns input nicely if other items were here */
+    align-items: center;
+    position: relative; /* Needed for absolute positioning of searchResultsContainer */
+}
+
+#searchInput {
+    padding: 6px 10px; /* Slightly adjusted padding */
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color); /* Use theme background */
+    color: var(--text-color); /* Use theme text color */
+    min-width: 220px; /* A decent default width */
+    font-size: 0.9em;
+}
+
+#searchResultsContainer {
+    display: none; /* Initially hidden, JS will show it */
+    position: absolute;
+    top: 100%; /* Position directly below the search input */
+    left: 0;
+    right: 0; /* Makes it same width as search-container or input if constrained */
+    background-color: var(--sidebar-background); /* Theme consistent */
+    border: 1px solid var(--border-color);
+    border-top: none; /* Avoid double border with input */
+    max-height: 350px; /* Limit height and make scrollable */
+    overflow-y: auto;
+    z-index: 1000; /* Ensure it's on top of other content */
+    border-radius: 0 0 4px 4px; /* Rounded bottom corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+#searchResultsContainer a {
+    display: block;
+    padding: 8px 12px;
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color); /* Separator for items */
+    font-size: 0.9em;
+}
+
+#searchResultsContainer a:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+#searchResultsContainer a:hover {
+    background-color: var(--category-background); /* Hover effect */
+    color: var(--link-hover-color);
+}
+
+#searchResultsContainer .no-results {
+    padding: 10px 12px;
+    color: #888; /* Dim color for no results message */
+    text-align: center;
+    font-style: italic;
+}
+

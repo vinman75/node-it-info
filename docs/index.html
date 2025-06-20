@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Node-It Help</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.3</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            
+<section id="welcome">
+    <p align="center">
+        <img src="assets/node-it_splash.png" alt="Node-It Splash Screen" style="max-width: 500px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-bottom: 20px;">
+    </p>
+    <h2>Welcome to Node-It</h2>
+
+    <p>Node-It is a versatile visual scripting application built with Python and PySide6, offering a graphical environment to design, create, and execute various logic flows and data processing pipelines.</p>
+    <p>While Node-It is not intended as a complete replacement for programming, it serves as a flexible "jack-of-all-trades" platform, demonstrating a wide range of capabilities from generative art and data manipulation to AI interaction and animation control. Its core strength lies in its extensibility, allowing developers to readily create and integrate new, specialized node types.</p>
+    <p>This makes Node-It an excellent foundation for rapidly prototyping ideas, building custom niche tools, or providing a user-friendly scripting front-end for more complex systems. This documentation provides guidance on using the interface, understanding core concepts, and extending the application.</p>
+    <p>Whether you're exploring visual programming concepts, looking for a base to develop specialized visual tools, or interested in a hands-on demonstration of a node-based system, Node-It offers a feature-rich and adaptable starting point.</p>
+
+    <h3>Core Concepts</h3>
+    <ul>
+        <li><strong>Nodes:</strong> The fundamental building blocks. Each node performs a specific operation.</li>
+        <li><strong>Sockets (Plugs):</strong> Input and Output points on nodes used for connections. Colors often indicate data types.</li>
+        <li><strong>Connections (Edges):</strong> Wires linking an output socket of one node to an input socket of another, defining data flow or execution order.</li>
+        <li><strong>Graph:</strong> The entire network of connected nodes.</li>
+        <li><strong>Data Types:</strong> Nodes operate on specific types of data (numbers, text, lists, etc.). Connections are usually type-restricted.</li>
+    </ul>
+
+    <h3>Getting Started</h3>
+    <ul>
+        <li>Explore the <strong>General Help</strong> section in the sidebar for UI basics like navigation and file management.</li>
+        <li>Browse the <strong>Nodes</strong> section to see documentation for individual node types available.</li>
+        <li>Right-click on the canvas in the application to start adding nodes.</li>
+        <li>Connect nodes by dragging from an output socket to a compatible input socket.</li>
+    </ul>
+    <p>Select a topic or node from the sidebar navigation to learn more.</p>
+</section>
+
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.3 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="nav_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

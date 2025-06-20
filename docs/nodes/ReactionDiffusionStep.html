@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactionDiffusionStep - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.3</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            
+<h2>ReactionDiffusionStep</h2>
+<div class="node-details">
+    <p>
+        <strong>Category:</strong> Simualtion
+        <span class="node-color-swatch" style="background-color: #3C4955;" title="Color: #3C4955"></span>
+    </p>
+    <p><strong>Description:</strong> Takes current chemical concentration grids (as a dictionary {'grid_a':..., 'grid_b':...} via 'Grids In'), simulation parameters ('Diffusion A/B', 'Feed Rate', 'Kill Rate', 'Delta Time'), boundary conditions ('Boundary Mode', 'Boundary Value A/B' for Dirichlet), and a 'Frame In' trigger. 'Feed Rate' and 'Kill Rate' can be global floats or spatial grids. Outputs the next state of the chemical grids in the same dictionary format. Handles 'Reset In' to re-initialize from 'Initial Grids In' (also a dictionary) or internal defaults.</p>
+    <p><b>Inputs:</b></p>
+    <ul>
+        <li><strong>Grids In:</strong> <code>dict</code></li>
+        <li><strong>Frame In:</strong> <code>int</code></li>
+        <li><strong>Reset In:</strong> <code>bool</code></li>
+        <li><strong>Initial Grids In:</strong> <code>dict</code></li>
+        <li><strong>Diffusion A:</strong> <code>float</code></li>
+        <li><strong>Diffusion B:</strong> <code>float</code></li>
+        <li><strong>Feed Rate:</strong> <code>any</code></li>
+        <li><strong>Kill Rate:</strong> <code>any</code></li>
+        <li><strong>Delta Time:</strong> <code>float</code></li>
+        <li><strong>Boundary Value A In:</strong> <code>float</code></li>
+        <li><strong>Boundary Value B In:</strong> <code>float</code></li>
+    </ul>
+    <p><b>Outputs:</b></p>
+    <ul>
+        <li><strong>Output:</strong> <code>dict</code></li>
+    </ul>
+    
+</div>
+
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.3 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

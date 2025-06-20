@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecting Nodes - Node-It Help</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../assets/node-it_icon.png">
+</head>
+<body>
+    <header>
+        <img src="../assets/node-it_icon.png" alt="Node-It Icon" class="header-icon">
+        <h1>Node-It Help Documentation v0.6.3</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search documentation..." autocomplete="off">
+            <div id="searchResultsContainer"></div>
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <nav>
+            <!-- Navigation will be loaded here by script.js -->
+            <p class="loading-placeholder">Loading navigation...</p>
+        </nav>
+        <main>
+            <h2>Selecting Nodes</h2>
+<p>Select nodes to interact with them (move, duplicate, delete, edit properties):</p>
+        <ul>
+            <li><strong>Single Click (LMB):</strong> Selects a single node. Any previously selected nodes will be deselected.</li>
+            <li><strong>Shift + Click (LMB):</strong> Adds a node to the current selection without deselecting others.</li>
+            <li><strong>Ctrl + Click (LMB):</strong> Toggles the selection state of a single node (selects if unselected, deselects if selected) without affecting others.</li>
+            <li><strong>Box Selection (LMB Drag):</strong> Click and drag on an empty area of the canvas to draw a selection box (<span style='color: #00ff00;'>green border</span>). Nodes intersecting the box will be selected, deselecting any previously selected nodes.</li>
+            <li><strong>Box Selection Additive (Shift + LMB Drag):</strong> Hold <strong>Shift</strong> while dragging a selection box to add the nodes intersecting the box to the current selection.</li>
+            <li><strong>Box Selection Toggle (Ctrl + LMB Drag):</strong> Hold <strong>Ctrl</strong> while dragging a selection box to toggle the selection state of nodes intersecting the box.</li>
+            <li><strong>Box Deletion (Ctrl + RMB Drag):</strong> Hold <strong>Ctrl</strong> and drag with the <strong>Right Mouse Button</strong> to draw a red box (<span style='color: #ff0000;'>red border</span>). All nodes intersecting this box will be deleted when you release the button.</li>
+            <li><strong>Select All (Ctrl+A):</strong> Standard keyboard shortcut to select all nodes.</li>
+        </ul>
+        <p>Selected nodes have an orange dashed border highlight.</p>
+        <p>Clicking a node's header in the <strong>Node Editor</strong> panel also selects it in the graph view.</p>
+        <p><em>(Handled by SelectionManager)</em></p>
+        <!-- Placeholder: <img src="assets/help/selection_methods.gif" alt="Node Selection Methods Animation"> -->
+        
+        </main>
+    </div>
+    <footer>
+        Node-It v0.6.3 Documentation | Project License: MIT | Copyright 2025, Vinman75
+    </footer>
+
+    <!-- IMPORTANT: Load nav_data.js BEFORE script.js -->
+    <script src="../nav_data.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
